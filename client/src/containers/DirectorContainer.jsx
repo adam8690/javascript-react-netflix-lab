@@ -12,7 +12,7 @@ class DirectorContainer extends React.Component {
   }
 
   componentDidMount(){
-    const url = "http://netflixroulette.net/api/api.php?director=Steven&SpielBerg"
+    const url = "http://netflixroulette.net/api/api.php?director=Steven%20SpielBerg"
     const request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () => {
@@ -26,13 +26,18 @@ class DirectorContainer extends React.Component {
     request.send()
   }
 
+  handleStateChange(film){
+    this.setState({selectedFilm: film})
+    console.log(film);
+  }
+
   render(){
 
     return (
 
       <div className="director-container">
         <h1>Steven Spielberg</h1>
-        <FilmSelector films={this.state.filmArray}/> 
+        <FilmSelector films={this.state.filmArray} handleStateChange={this.handleStateChange.bind(this)}/> 
       </div>
 
     )
